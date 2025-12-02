@@ -12,8 +12,6 @@ export default function Home() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundImage:
-            ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           color: "white",
@@ -24,7 +22,7 @@ export default function Home() {
       >
         <div
           style={{
-          background: "#0A1A4F",
+            background: "#0A1A4F",
             padding: "40px",
             borderRadius: "15px",
             maxWidth: "700px",
@@ -37,40 +35,61 @@ export default function Home() {
             Manage all your students’ information in one smart, simple, and secure system.
             Easily <strong>add, view, update, and delete</strong> student details anytime.
           </p>
-          <button
-            onClick={() => (window.location.href = "/students")}
-            style={{
-              marginTop: "25px",
-              padding: "12px 25px",
-              backgroundColor: "#38BDF8",
-              border: "none",
-              borderRadius: "8px",
-              color: "blue",
-              fontSize: "1rem",
-              cursor: "pointer",
-              transition: "all 0.3s",
-            }}
-            onMouseOver={(e) => (e.target.style.backgroundColor = "#0F172A")}
-            onMouseOut={(e) => (e.target.style.backgroundColor = "#38BDF8")}
-          >
-            View Students
-          </button>
+
+          {/* Buttons Container */}
+          <div style={{ marginTop: "25px", display: "flex", gap: "15px", justifyContent: "center" }}>
+            <button
+              onClick={() => (window.location.href = "/students")}
+              style={{
+                padding: "12px 25px",
+                backgroundColor: "#38BDF8",
+                border: "none",
+                borderRadius: "8px",
+                color: "white",
+                fontSize: "1rem",
+                cursor: "pointer",
+                transition: "all 0.3s",
+              }}
+              onMouseOver={(e) => (e.target.style.backgroundColor = "#275ae7ff")}
+              onMouseOut={(e) => (e.target.style.backgroundColor = "#38BDF8")}
+            >
+              View Students
+            </button>
+
+            <button
+              onClick={() => (window.location.href = "/login")}
+              style={{
+                padding: "12px 25px",
+                backgroundColor: "#38BDF8",  // navy blue
+                border: "none",
+                borderRadius: "8px",
+                color: "white",
+                fontSize: "1rem",
+                cursor: "pointer",
+                transition: "all 0.3s",
+              }}
+              onMouseOver={(e) => (e.target.style.backgroundColor = "#4169E1" )}
+              onMouseOut={(e) => (e.target.style.backgroundColor = "#38BDF8")}
+            >
+              Login
+            </button>
+          </div>
         </div>
       </section>
-<footer
-  style={{
-    background: "#0A1A4F",  // dark blue
-    color: "white",
-    padding: "20px",
-    textAlign: "center",
-    marginTop: "20px",
-  }}
->
-  <p>
-   © {new Date().getFullYear()} Maishfar Student System | All Rights Reserved | Designed by Farida Abdulsalam
-  </p>
-</footer>
 
+      <footer
+        style={{
+          background: "#0A1A4F",
+          color: "white",
+          padding: "20px",
+          textAlign: "center",
+          marginTop: "20px",
+        }}
+      >
+        <p>
+          © {new Date().getFullYear()} Maishfar Student System | All Rights Reserved | Designed by Farida Abdulsalam
+        </p>
+      </footer>
     </>
   );
 }

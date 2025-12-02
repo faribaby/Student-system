@@ -8,7 +8,7 @@ export default function LoginPage() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (email === "admin@maishfar.com" && password === "12345") {
+    if (email === "faridaabdulsalam966@gmail.com" && password === "far212004") {
       localStorage.setItem("isLoggedIn", "true");
       alert("Login successful!");
       window.location.href = "/dashboard";
