@@ -67,7 +67,7 @@ export default function Home() {
   }}
 >
   <p>
-    © {new Date().getFullYear()} Maishfar Student System | Designed by Farida Abdulsalam
+   © {new Date().getFullYear()} Maishfar Student System | All Rights Reserved | Designed by Farida Abdulsalam
   </p>
 </footer>
 

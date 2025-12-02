@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const linkStyle = {
@@ -22,23 +23,33 @@ export default function Navbar() {
         color: "white",
       }}
     >
-      {/* CLICKABLE TITLE WITH HOVER */}
-      <Link href="/" style={{ ...linkStyle }}>
-        <h2
-          style={{
-            margin: 0,
-            cursor: "pointer",
-            transition: "color 0.3s ease",
-          }}
-          onMouseEnter={(e) => (e.target.style.color = hoverColor)}
-          onMouseLeave={(e) => (e.target.style.color = "white")}
-        >
-          MAISHFAR STUDENT SYSTEM
-        </h2>
+      {/* LOGO + TITLE */}
+      <Link href="/" style={{ textDecoration: "none" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <Image
+            src="/maishfar.png" // your logo file name
+            alt="Logo"
+            width={40}
+            height={40}
+            style={{ borderRadius: "6px" }}
+          />
+
+          <h2
+            style={{
+              margin: 0,
+              color: "white",
+              cursor: "pointer",
+              transition: "color 0.3s ease",
+            }}
+            onMouseEnter={(e) => (e.target.style.color = hoverColor)}
+            onMouseLeave={(e) => (e.target.style.color = "white")}
+          >
+            MAISHFAR STUDENT SYSTEM
+          </h2>
+        </div>
       </Link>
 
       <div style={{ display: "flex", gap: "20px" }}>
-
         {/* HOME */}
         <Link
           href="/"
