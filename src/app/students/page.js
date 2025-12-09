@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "@/components/Navbar";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 export default function StudentsPage() {
   const [students, setStudents] = useState([]);
@@ -33,13 +35,35 @@ export default function StudentsPage() {
       s.course.toLowerCase().includes(search.toLowerCase())
   );
 
+  // 🔵 Excel Export Function
+  const exportToExcel = () => {
+    if (students.length === 0) {
+      alert("No students available to export!");
+      return;
+    }
+
+    const worksheet = XLSX.utils.json_to_sheet(students);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Students");
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const file = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+
+    saveAs(file, "student_records.xlsx");
+  };
+
   // 🔴 Delete student
   const deleteStudent = async (id) => {
     if (!window.confirm("Are you sure you want to delete this student?")) return;
 
     try {
       await axios.delete(`/api/students/${id}`);
-      // Update state immediately
       setStudents(students.filter((s) => s._id !== id));
       alert("Student deleted successfully!");
     } catch (err) {
@@ -58,6 +82,22 @@ export default function StudentsPage() {
       <Navbar />
       <div style={{ padding: "20px" }}>
         <h2>All Students</h2>
+
+        {/* Download Excel Button */}
+        <button
+          onClick={exportToExcel}
+          style={{
+            padding: "10px 15px",
+            background: "#1E90FF",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            marginBottom: "15px",
+          }}
+        >
+          Download Excel
+        </button>
 
         {/* Search input */}
         <input
@@ -107,7 +147,14 @@ export default function StudentsPage() {
                   </button>
                   <button
                     onClick={() => deleteStudent(s._id)}
-                    style={{ backgroundColor: "red", color: "white", padding: "5px 10px", border: "none", borderRadius: "4px", cursor: "pointer" }}
+                    style={{
+                      backgroundColor: "red",
+                      color: "white",
+                      padding: "5px 10px",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                    }}
                   >
                     Delete
                   </button>

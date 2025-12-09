@@ -1,8 +1,19 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 
 export default function Home() {
+  const router = useRouter();
+
+  // PROTECTION LOGIC
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) {
+      router.push("/login"); // redirect to login if not logged in
+    }
+  }, [router]);
+
   return (
     <>
       <Navbar />
@@ -46,7 +57,7 @@ export default function Home() {
                 border: "none",
                 borderRadius: "8px",
                 color: "white",
-                fontSize: "1rem",
+                fontSize: "1.2rem",
                 cursor: "pointer",
                 transition: "all 0.3s",
               }}
@@ -54,24 +65,6 @@ export default function Home() {
               onMouseOut={(e) => (e.target.style.backgroundColor = "#38BDF8")}
             >
               View Students
-            </button>
-
-            <button
-              onClick={() => (window.location.href = "/login")}
-              style={{
-                padding: "12px 25px",
-                backgroundColor: "#38BDF8",  // navy blue
-                border: "none",
-                borderRadius: "8px",
-                color: "white",
-                fontSize: "1rem",
-                cursor: "pointer",
-                transition: "all 0.3s",
-              }}
-              onMouseOver={(e) => (e.target.style.backgroundColor = "#4169E1" )}
-              onMouseOut={(e) => (e.target.style.backgroundColor = "#38BDF8")}
-            >
-              Login
             </button>
           </div>
         </div>
